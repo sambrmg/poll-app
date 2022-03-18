@@ -1,6 +1,6 @@
 .App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 300px;
 }

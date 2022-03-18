@@ -1,26 +1,29 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './Poll.css';
 
 function Poll() {
+  const [poll, setPoll] = useState('');
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/`).then((res) => {
+      setPoll(res.data);
+    });
+  });
+
   return (
     <div className='Poll'>
       <header>
-        <h1 className='Title'>What is your favorite programming language?</h1>
-        <p className='Description'>Description</p>
+        <h1 className='Title'>{poll.title}</h1>
+        <p className='Description'>{poll.description}</p>
       </header>
       <main>
         <ul className='List'>
-          <li>
-            <button>Ruby</button>
-          </li>
-          <li>
-            <button>Java</button>
-          </li>
-          <li>
-            <button>PHP</button>
-          </li>
-          <li>
-            <button>C#</button>
-          </li>
+          {poll.options?.map((option) => (
+            <li key={option}>
+              <button>{option}</button>
+            </li>
+          ))}
         </ul>
       </main>
     </div>
