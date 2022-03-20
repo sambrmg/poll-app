@@ -1,3 +1,7 @@
+.User {
+  width: 300px;
+}
+
 .User form label {
   display: block;
   font-size: 0.8rem;
@@ -29,4 +33,10 @@
 .User form button:hover {
   background-color: #605fec;
   border-color: #605fec;
+}
+
+.User .form-error {
+  color: red;
+  margin-top: 10px;
+  line-height: 1.2rem;
 }

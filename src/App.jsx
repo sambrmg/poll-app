@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Poll from './components/Poll';
 import User from './components/User';
