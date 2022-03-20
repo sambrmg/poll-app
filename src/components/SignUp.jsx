@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../config';
-import './User.css';
+import './SignUp.css';
 
 const clientApi = axios.create({ baseURL });
 
-function User() {
+function SignUp() {
+  const navigate = useNavigate();
   const [error, setError] = useState('');
   const [inputs, setInputs] = useState({
     username: '',
@@ -37,32 +39,39 @@ function User() {
     }
 
     clientApi.post('/user', inputs).then(function (response) {
-        console.log(response);
+        if(response.data?.created === true) {
+          navigate('/', { replace: true });
+        } else {
+          setError(response.data.message);
+        }
       }).catch(function (error) {
         console.log(error);
       });
   }
 
   return (
-    <div className='User'>
+    <div className='SignUp'>
       <form onSubmit={handleSubmit} method='POST'>
-        <label htmlFor='username'>Username</label>
-        <input type='text' id='username' name='username' 
+        <label htmlFor='username' className='FormLabel'>Username</label>
+        <input type='text' id='username'
+          name='username' className='FormInput'
           onChange={handleChange}/>
 
-        <label htmlFor='password'>Password</label>
-        <input type='password' id='password' name='password'
+        <label htmlFor='password' className='FormLabel'>Password</label>
+        <input type='password' id='password'
+          name='password' className='FormInput'
           onChange={handleChange}/>
         
-        <label htmlFor='repassword'>Re-enter Password</label>
-        <input type='password' id='repassword' name='repassword'
+        <label htmlFor='repassword' className='FormLabel'>Re-enter Password</label>
+        <input type='password' id='repassword'
+          name='repassword' className='FormInput'
           onChange={handleChange} />
 
-        <button type="submit">Sign Up</button>
+        <button className='PrimaryButton mt-20' type="submit">Sign Up</button>
       </form>
       <p className='form-error'>{error}</p>
     </div>
   );
 }
 
-export default User;
+export default SignUp;

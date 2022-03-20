@@ -1,0 +1,22 @@
+.PollList {
+  list-style: none;
+  padding: 0;
+}
+
+.PollList li {
+  margin-bottom: 10px;
+}
+
+.PollList li button {
+  width: 100%;
+  background: transparent;
+  border: 2px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.PollList li button:active {
+  border-color: #6968f4;
+}

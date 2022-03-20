@@ -8,26 +8,3 @@
   font-size: 1rem;
   margin-bottom: 15px;
 }
-
-.Poll .List {
-  list-style: none;
-  padding: 0;
-}
-
-.Poll .List li {
-  margin-bottom: 10px;
-}
-
-.Poll .List li button {
-  width: 100%;
-  background: transparent;
-  border: 2px solid #cccccc;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.Poll .List li button:active {
-  border-color: #6968f4;
-}

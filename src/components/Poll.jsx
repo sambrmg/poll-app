@@ -2,33 +2,24 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { baseURL } from '../config';
 import './Poll.css';
+import PollList from './PollList';
+import { useParams } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const clientApi = axios.create({ baseURL });
-
-export function PollList(props) {
-  const options = props.options;
-  const listItems = options.map((item) =>
-    <li key={item.toString()}>
-      <button>{item}</button>
-    </li>
-  );
-  return (
-    <ul className='List'>{listItems}</ul>
-  );
-}
 
 function Poll() {
   const [pollTitle, setTitle] = useState('');
   const [pollDescription, setDescription] = useState('');
   const [pollOptions, setOptions] = useState([]);
+  const { id } = useParams();
 
-  
   useEffect(() => {
     fetchPoll();
   }, []);
 
   const fetchPoll = async () => {
-    clientApi.get(`/sY34kg`).then((res) => {
+    clientApi.get(`/${id}`).then((res) => {
       setTitle(res.data.title);
       setDescription(res.data.description);
       setOptions(res.data.options);

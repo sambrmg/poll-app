@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
-import Poll, { PollList } from './Poll';
+import PollList from './PollList';
 
 test('should render PollList of 4 options', () => {
   const options = [1,2,3,4]
