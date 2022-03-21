@@ -31,13 +31,13 @@ function SignIn() {
             return;
         }    
 
-        clientApi.post('/user/login', inputs)
-            .then(function (response) {
-                Cookies.set('token', response.data['x-access-token'], { expires: 7, path: '' });
-                navigate('/', { replace: true });
-            }).catch(function (error) {
-                console.log(error);
-            });
+    clientApi.post('/user/login', inputs)
+      .then(function (response) {
+          Cookies.set('token', response.data['x-access-token'], { expires: 7, path: '' });
+          navigate('/', { replace: true });
+      }).catch(function (error) {
+        setError(error.response.data.message)
+      });
     }
     return (
         <div className='SignIn'>

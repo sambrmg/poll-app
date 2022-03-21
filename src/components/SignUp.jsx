@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { baseURL } from '../config';
 import './SignUp.css';
 
@@ -40,6 +41,7 @@ function SignUp() {
 
     clientApi.post('/user', inputs).then(function (response) {
         if(response.data?.created === true) {
+          Cookies.set('token', response.data['x-access-token'], { expires: 7, path: '' });
           navigate('/', { replace: true });
         } else {
           setError(response.data.message);

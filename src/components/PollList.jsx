@@ -4,8 +4,8 @@ import './PollList.css';
 function PollList(props) {
     const options = props.options;
     const listItems = options.map((item) =>
-        <li key={item.toString()}>
-        <button>{item}</button>
+        <li key={item.id.toString()}>
+        <button>{item.title}</button>
         </li>
     );
     return (

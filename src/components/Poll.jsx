@@ -4,7 +4,7 @@ import { baseURL } from '../config';
 import './Poll.css';
 import PollList from './PollList';
 import { useParams } from "react-router-dom";
-import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const clientApi = axios.create({ baseURL });
 
@@ -13,6 +13,7 @@ function Poll() {
   const [pollDescription, setDescription] = useState('');
   const [pollOptions, setOptions] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPoll();
@@ -23,7 +24,7 @@ function Poll() {
       setTitle(res.data.title);
       setDescription(res.data.description);
       setOptions(res.data.options);
-    });
+    }).catch(err => navigate('/not-found', { replace: true }));
   }
 
   return (
