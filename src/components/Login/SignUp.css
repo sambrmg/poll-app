@@ -1,9 +1,3 @@
 .SignUp {
   width: 300px;
 }
-
-.SignUp .form-error {
-  color: red;
-  margin-top: 10px;
-  line-height: 1.2rem;
-}

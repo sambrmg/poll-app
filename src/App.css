@@ -33,11 +33,23 @@
   margin-bottom: 5px;
 }
 
-.FormInput {
+.FormControl {
   margin-bottom: 10px;
   display: block;
   width: 100%;
   border: 2px solid #cccccc;
   border-radius: 5px;
   padding: 10px;
+  font-size: 1rem;
+}
+
+.FormTextarea {
+  height: 75px;
+  resize: none;
+}
+
+.form-error {
+  color: red;
+  margin-top: 10px;
+  line-height: 1.2rem;
 }
