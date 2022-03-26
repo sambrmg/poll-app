@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { baseURL } from '../config';
+import { baseURL } from '../../config';
 import './Poll.css';
 import PollList from './PollList';
-import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 
 const clientApi = axios.create({ baseURL });
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { baseURL } from '../config';
+import { baseURL } from '../../config';
 import Cookies from 'js-cookie';
 import './SignIn.css';
 
