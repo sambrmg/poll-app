@@ -44,15 +44,15 @@ function SignIn() {
           <form onSubmit={handleSubmit} method='POST'>
             <label htmlFor='username' className='FormLabel'>Username</label>
             <input type='text' id='username'
-              name='username' className='FormInput'
+              name='username' className='FormControl'
               onChange={handleChange}/>
     
             <label htmlFor='password' className='FormLabel'>Password</label>
             <input type='password' id='password'
-              name='password' className='FormInput'
+              name='password' className='FormControl'
               onChange={handleChange}/>
     
-            <button className='PrimaryButton mt-20' type="submit">Sign In</button>
+            <button className='Button PrimaryButton mt-20' type="submit">Sign In</button>
           </form>
           <p className='form-error'>{error}</p>
         </div>

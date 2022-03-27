@@ -5,13 +5,12 @@
   min-width: 300px;
 }
 
-.PrimaryButton {
+.Button {
   display: block;
   width: 100%;
-  border: 2px solid #6968f4;
+  border: 2px solid;
   border-radius: 5px;
   padding: 10px;
-  background-color: #6968f4;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -21,9 +20,25 @@
   text-transform: uppercase;
 }
 
+.PrimaryButton {
+  background-color: #6968f4;
+  border-color: #6968f4;
+}
+
 .PrimaryButton:hover {
   background-color: #605fec;
   border-color: #605fec;
+}
+
+.SecondaryButton {
+  color: #6968f4;
+  background-color: white;
+  border-color: #6968f4;
+}
+
+.SecondaryButton:hover {
+  color: #3e3dc1;
+  border-color: #3e3dc1;
 }
 
 .FormLabel {

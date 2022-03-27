@@ -1,6 +1,19 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { baseURL } from '../../config';
+import Cookies from 'js-cookie';
+
+
 
 function PollCreate() {
+
+    const clientApi = axios.create({ 
+      baseURL,
+      headers: {
+        'Authorization': Cookies.get('token')
+      }
+    });
+    
     const [error, setError] = useState('');
     const [inputs, setInputs] = useState({
         title: '',
@@ -29,26 +42,20 @@ function PollCreate() {
             return;
         }
 
-        if(options.length < 2) {
+        const optionsFilled = options.filter( item => item.value.trim() !== '');
+
+        if(optionsFilled.length < 2) {
             setError('Please add two or more options!')
             return;
         }
-        const optionsFilled = options.filter( item => item.value.trim() !== '');
-        console.log(optionsFilled);
+
+        clientApi.post('/', { ...inputs, optionsFilled }).then(function (response) {
+          
+        }).catch(function (error) {
+        });
+
     };
 
-    const Option = () => 
-      options.map((item, index) => 
-        <div key={index}>
-          <label className='FormLabel'>Option {index+1}</label>
-          <input name={`option${index}`} className='FormControl'
-            onChange={event => { 
-              item.value = event.target.value 
-            }}  />
-        </div>
-      )
-    
-    
     const handleOption = () => setOptions([...options, { value : '' }]);
 
     return (
@@ -63,11 +70,19 @@ function PollCreate() {
             <textarea name="description" id="description"
               className='FormControl FormTextarea' onChange={handleChange}></textarea>
             
-            <Option />
+            {options.map((item, index) => 
+              <div key={index}>
+                <label className='FormLabel'>Option {index+1}</label> 
+                <input name={`option${index}`} className='FormControl'
+                  onChange={event => { 
+                    item.value = event.target.value 
+                  }} />
+              </div>
+            )}
 
-            <button className='PrimaryButton mt-20' type="button" 
+            <button className='Button SecondaryButton mt-20' type="button" 
               onClick={handleOption}>Add option</button>
-            <button className='PrimaryButton mt-20' type="submit">Create poll</button>
+            <button className='Button PrimaryButton mt-20' type="submit">Create poll</button>
           </form>
           <p className='form-error'>{error}</p>
         </div>
