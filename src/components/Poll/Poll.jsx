@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { baseURL } from '../../config';
 import './Poll.css';
 import PollList from './PollList';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
 
 const clientApi = axios.create({ baseURL });
 
@@ -14,18 +14,20 @@ function Poll() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const fetchPoll = async () => {
-    clientApi.get(`/${id}`).then((res) => {
-      setTitle(res.data.title);
-      setDescription(res.data.description);
-      setOptions(res.data.options);
-    }).catch(err => navigate('/not-found', { replace: true }));
-  }
+  const fetchPoll = () => {
+    clientApi
+      .get(`/${id}`)
+      .then((res) => {
+        setTitle(res.data.title);
+        setDescription(res.data.description);
+        setOptions(res.data.options);
+      })
+      .catch((err) => navigate('/not-found', { replace: true }));
+  };
 
   useEffect(() => {
     fetchPoll();
   }, []);
-
 
   return (
     <div className='Poll'>
@@ -34,7 +36,7 @@ function Poll() {
         <p className='Description'>{pollDescription}</p>
       </header>
       <main>
-        <PollList options={pollOptions}/>
+        <PollList options={pollOptions} />
       </main>
     </div>
   );

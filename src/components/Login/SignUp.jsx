@@ -13,63 +13,90 @@ function SignUp() {
   const [inputs, setInputs] = useState({
     username: '',
     password: '',
-    repassword: ''
+    repassword: '',
   });
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({...values, [name]: value.trim()}));
-  }
+    setInputs((values) => ({ ...values, [name]: value.trim() }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setError('');
 
-    if(inputs?.username === ''
-      || inputs?.password === ''
-      || inputs?.repassword === '') {
-
-      setError('Please fill all fields!')
+    if (
+      inputs?.username === '' ||
+      inputs?.password === '' ||
+      inputs?.repassword === ''
+    ) {
+      setError('Please fill all fields!');
       return;
-    }    
+    }
 
-    if(inputs.password !== inputs.repassword) {
+    if (inputs.password !== inputs.repassword) {
       setError('Your password and confirmation password do not match.');
       return;
     }
 
-    clientApi.post('/user', inputs).then(function (response) {
-        if(response.data?.created === true) {
+    clientApi
+      .post('/user', inputs)
+      .then(function (response) {
+        if (response.data?.created === true) {
           Cookies.set('token', response.data['x-access-token'], cookieConfig);
           navigate('/', { replace: true });
         } else {
           setError(response.data.message);
         }
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 
   return (
     <div className='SignUp'>
       <form onSubmit={handleSubmit} method='POST'>
-        <label htmlFor='username' className='FormLabel'>Username</label>
-        <input type='text' id='username'
-          name='username' className='FormControl'
-          onChange={handleChange}/>
+        <label htmlFor='username' className='FormLabel'>
+          Username
+        </label>
+        <input
+          type='text'
+          id='username'
+          aria-label='username'
+          name='username'
+          className='FormControl'
+          onChange={handleChange}
+        />
 
-        <label htmlFor='password' className='FormLabel'>Password</label>
-        <input type='password' id='password'
-          name='password' className='FormControl'
-          onChange={handleChange}/>
-        
-        <label htmlFor='repassword' className='FormLabel'>Re-enter Password</label>
-        <input type='password' id='repassword'
-          name='repassword' className='FormControl'
-          onChange={handleChange} />
+        <label htmlFor='password' className='FormLabel'>
+          Password
+        </label>
+        <input
+          type='password'
+          id='password'
+          aria-label='password'
+          name='password'
+          className='FormControl'
+          onChange={handleChange}
+        />
 
-        <button className='Button PrimaryButton mt-2' type="submit">Sign Up</button>
+        <label htmlFor='repassword' className='FormLabel'>
+          Re-enter Password
+        </label>
+        <input
+          type='password'
+          id='repassword'
+          name='repassword'
+          aria-label='re-password'
+          className='FormControl'
+          onChange={handleChange}
+        />
+
+        <button className='Button PrimaryButton mt-2' type='submit'>
+          Sign Up
+        </button>
       </form>
       <p className='form-error'>{error}</p>
     </div>
