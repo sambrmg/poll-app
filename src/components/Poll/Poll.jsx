@@ -14,10 +14,6 @@ function Poll() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchPoll();
-  }, []);
-
   const fetchPoll = async () => {
     clientApi.get(`/${id}`).then((res) => {
       setTitle(res.data.title);
@@ -25,6 +21,11 @@ function Poll() {
       setOptions(res.data.options);
     }).catch(err => navigate('/not-found', { replace: true }));
   }
+
+  useEffect(() => {
+    fetchPoll();
+  }, []);
+
 
   return (
     <div className='Poll'>

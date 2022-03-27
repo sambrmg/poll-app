@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { baseURL } from '../../config';
+import { baseURL, cookieConfig } from '../../config';
 import './SignUp.css';
 
 const clientApi = axios.create({ baseURL });
@@ -41,7 +41,7 @@ function SignUp() {
 
     clientApi.post('/user', inputs).then(function (response) {
         if(response.data?.created === true) {
-          Cookies.set('token', response.data['x-access-token'], { expires: 7, path: '' });
+          Cookies.set('token', response.data['x-access-token'], cookieConfig);
           navigate('/', { replace: true });
         } else {
           setError(response.data.message);
@@ -69,7 +69,7 @@ function SignUp() {
           name='repassword' className='FormControl'
           onChange={handleChange} />
 
-        <button className='Button PrimaryButton mt-20' type="submit">Sign Up</button>
+        <button className='Button PrimaryButton mt-2' type="submit">Sign Up</button>
       </form>
       <p className='form-error'>{error}</p>
     </div>

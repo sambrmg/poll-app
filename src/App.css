@@ -1,8 +1,26 @@
-.App {
+.App .Content {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   min-width: 300px;
+}
+
+.App .Username {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.App .Menu {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.App .Menu .Button {
+  display: flex;
+  padding: 5px;
+  width: auto;
 }
 
 .Button {
