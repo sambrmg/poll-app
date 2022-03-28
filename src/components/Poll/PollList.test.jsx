@@ -3,7 +3,7 @@ import { render, screen, within } from '@testing-library/react';
 import PollList from './PollList';
 
 test('should render PollList of 2 options', () => {
-  const options = [{ id: 1 }, { id: 2 }];
+  const options = [{ id: 1, title: 'One' }, { id: 2, title: 'Two' }];
   render(<PollList options={options} />);
 
   const list = screen.getByRole('list');

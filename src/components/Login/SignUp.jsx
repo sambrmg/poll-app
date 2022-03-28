@@ -44,8 +44,7 @@ function SignUp() {
       .post('/user', inputs)
       .then(function (response) {
         if (response.data?.created === true) {
-          Cookies.set('token', response.data['x-access-token'], cookieConfig);
-          navigate('/', { replace: true });
+          navigate('/sign-in', { replace: true });
         } else {
           setError(response.data.message);
         }
