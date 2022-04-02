@@ -1,0 +1,47 @@
+.Toast {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+}
+
+.Toast.Default {
+  background-color: var(--primary-color);
+}
+.Toast.Error {
+  background-color: var(--danger-color);
+}
+
+.Toast.Warning {
+  background-color: var(--warning-color);
+}
+
+.Toast .CloseButton {
+  background: white;
+  border: 2px solid;
+  border-radius: 47%;
+  font-size: 0.8rem;
+  line-height: 1em;
+  padding: 5px 8px;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  cursor: pointer;
+}
+
+.Toast.Default .CloseButton {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.Toast.Error .CloseButton {
+  border-color: var(--danger-color);
+  color: var(--danger-color);
+}
+
+.Toast.Warning .CloseButton {
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+}

@@ -39,24 +39,26 @@
 }
 
 .PrimaryButton {
-  background-color: #6968f4;
-  border-color: #6968f4;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .PrimaryButton:hover {
-  background-color: #605fec;
-  border-color: #605fec;
+  filter: grayscale(40%);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .SecondaryButton {
-  color: #6968f4;
+  color: var(--primary-color);
   background-color: white;
-  border-color: #6968f4;
+  border-color: var(--primary-color);
 }
 
 .SecondaryButton:hover {
-  color: #3e3dc1;
-  border-color: #3e3dc1;
+  filter: grayscale(60%);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .FormLabel {

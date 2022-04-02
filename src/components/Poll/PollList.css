@@ -18,9 +18,9 @@
 }
 
 .PollList li button:active {
-  border-color: #6968f4;
+  border-color: var(--primary-color);
 }
 
 .PollList li button.selected {
-  border-color: #6968f4;
+  border-color: var(--primary-color);
 }

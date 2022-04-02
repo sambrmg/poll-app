@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import { baseURL, cookieConfig } from '../../config';
+import { baseURL } from '../../config';
 import './SignUp.css';
 
 const clientApi = axios.create({ baseURL });
 
-function SignUp() {
+function SignUp(props) {
+  const { handleAlert } = props;
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [inputs, setInputs] = useState({
@@ -50,7 +50,7 @@ function SignUp() {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        handleAlert(error.message, 'error');
       });
   };
 

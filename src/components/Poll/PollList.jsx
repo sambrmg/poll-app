@@ -3,8 +3,7 @@ import axios from 'axios';
 import { baseURL } from '../../config';
 import './PollList.css';
 
-function PollList(props) {
-    const { options } = props;
+function PollList({ options }) {
     const [list, setList] = useState([]);
     const [voted, setVoted] = useState(false);
 

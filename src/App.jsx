@@ -10,21 +10,31 @@ import NotFound from './components/NotFound';
 import PrivateRoute from './components/PrivateRoute';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import Toast from './components/Utils/Toast';
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [username, setUsername] = useState(undefined);
+  const [toast, setToast] = useState({
+    message: '',
+    status: 'default'
+  });
     
   useEffect(() => {
       setUsername(Cookies.get('username'));
-  });
+  }, [username]);
   
   const handleLogout = () => {
     Cookies.remove('username');
     Cookies.remove('token');
     
     navigate('/', { replace: true });
+  };
+  
+  const handleAlert = (message, status = 'default') => {
+    setToast({});
+    setToast({ message, status });
   };
 
   return (
@@ -45,15 +55,16 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/p/:id' element={<Poll />} />
-          <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/sign-in' element={<SignIn />} />
+          <Route path='/sign-up' element={<SignUp handleAlert={handleAlert} />} />
+          <Route path='/sign-in' element={<SignIn handleAlert={handleAlert} />} />
           <Route path='*' element={<NotFound />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="/create-poll" element={<PollCreate />} />
+            <Route path="/create-poll" element={<PollCreate handleAlert={handleAlert} />} />
           </Route>
         </Routes>
       </div>
+      <Toast message={toast.message} status={toast.status} />
     </div>
   );
 }

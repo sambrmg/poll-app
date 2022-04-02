@@ -4,7 +4,8 @@ import { baseURL } from '../../config';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-function PollCreate() {
+function PollCreate(props) {
+  const { handleAlert } = props;
   const navigate = useNavigate();
   const clientApi = axios.create({ 
     baseURL,
@@ -49,9 +50,10 @@ function PollCreate() {
       }
 
       clientApi.post('/', { ...inputs, optionsFilled }).then(function (response) {
+        handleAlert('Poll created successfully');
         navigate(`/p/${response.data.pollCode}`, { replace: true });
       }).catch(function (error) {
-        setError(error.message)
+        handleAlert(error.message, 'error');
       });
 
   };

@@ -174,3 +174,13 @@ code {
 .mr-1 {
   margin-right: 0.5rem;
 }
+
+:root {
+  --primary-color: #6968f4;
+  --danger-color: #ff9070;
+  --warning-color: #ffc759;
+}
+
+.hide {
+  display: none;
+}

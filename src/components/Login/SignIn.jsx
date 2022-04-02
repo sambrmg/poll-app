@@ -7,7 +7,8 @@ import './SignIn.css';
 
 const clientApi = axios.create({ baseURL });
 
-function SignIn() {
+function SignIn(props) {
+    const { handleAlert } = props;
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const [inputs, setInputs] = useState({
@@ -37,7 +38,7 @@ function SignIn() {
           Cookies.set('username', response.data['username'], cookieConfig);
           navigate('/', { replace: true });
       }).catch(function (error) {
-        setError(error.response.data.message)
+        handleAlert(error.response.data.message, 'error');
       });
     }
     return (
