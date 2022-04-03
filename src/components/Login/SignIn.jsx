@@ -5,9 +5,8 @@ import { baseURL, cookieConfig } from '../../config';
 import Cookies from 'js-cookie';
 import './SignIn.css';
 
-const clientApi = axios.create({ baseURL });
-
 function SignIn(props) {
+    const clientApi = axios.create({ baseURL });
     const { handleAlert } = props;
     const navigate = useNavigate();
     const [error, setError] = useState('');

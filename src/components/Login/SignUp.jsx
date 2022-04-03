@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../config';
 import './SignUp.css';
 
-const clientApi = axios.create({ baseURL });
-
 function SignUp(props) {
+  const clientApi = axios.create({ baseURL });
   const { handleAlert } = props;
   const navigate = useNavigate();
   const [error, setError] = useState('');
@@ -44,9 +43,10 @@ function SignUp(props) {
       .post('/user', inputs)
       .then(function (response) {
         if (response.data?.created === true) {
+          handleAlert('User created!');
           navigate('/sign-in', { replace: true });
         } else {
-          setError(response.data.message);
+          handleAlert(response.data.message, 'error');
         }
       })
       .catch(function (error) {

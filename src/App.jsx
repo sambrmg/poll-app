@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import Toast from './components/Utils/Toast';
+import MyPolls from './components/Poll/MyPolls';
 
 function App() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function App() {
     
   useEffect(() => {
       setUsername(Cookies.get('username'));
-  }, [username]);
+  });
   
   const handleLogout = () => {
     Cookies.remove('username');
@@ -61,6 +62,7 @@ function App() {
 
           <Route element={<PrivateRoute />}>
             <Route path="/create-poll" element={<PollCreate handleAlert={handleAlert} />} />
+            <Route path="/my-polls" element={<MyPolls handleAlert={handleAlert} />} />
           </Route>
         </Routes>
       </div>

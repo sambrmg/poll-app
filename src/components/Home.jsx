@@ -20,7 +20,11 @@ function Home() {
             }
 
             {isLoggedIn && 
-                <Link to='/create-poll' className='Button PrimaryButton'>Create a new poll</Link>
+                <Link to='/create-poll' className='Button PrimaryButton mb-2'>Create a new poll</Link>
+            }
+
+            {isLoggedIn && 
+                <Link to='/my-polls' className='Button PrimaryButton'>My Polls</Link>
             }
         </div>
     );

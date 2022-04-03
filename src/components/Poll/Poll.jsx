@@ -4,29 +4,33 @@ import { baseURL } from '../../config';
 import './Poll.css';
 import PollList from './PollList';
 import { useParams, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
-const clientApi = axios.create({ baseURL });
 
 function Poll() {
+  const clientApi = axios.create({ 
+    baseURL,
+    headers: {
+      'Authorization': Cookies.get('token')
+    }
+  });
   const [pollTitle, setTitle] = useState('');
   const [pollDescription, setDescription] = useState('');
   const [pollOptions, setOptions] = useState([]);
+  const [sumAnswer, setSumAnswer] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const fetchPoll = () => {
+  useEffect(() => {
     clientApi
       .get(`/${id}`)
       .then((res) => {
         setTitle(res.data.title);
         setDescription(res.data.description);
         setOptions(res.data.options);
+        setSumAnswer(res.data.sum);
       })
-      .catch((err) => navigate('/not-found', { replace: true }));
-  };
-
-  useEffect(() => {
-    fetchPoll();
+      .catch(() => navigate('/not-found', { replace: true }));
   }, []);
 
   return (
@@ -36,7 +40,7 @@ function Poll() {
         <p className='Description'>{pollDescription}</p>
       </header>
       <main>
-        <PollList options={pollOptions} />
+        <PollList options={pollOptions} sumAnswer={sumAnswer}/>
       </main>
     </div>
   );
