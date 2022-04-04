@@ -23,7 +23,7 @@ function Poll() {
 
   useEffect(() => {
     clientApi
-      .get(`/${id}`)
+      .get(`/p/${id}`)
       .then((res) => {
         setTitle(res.data.title);
         setDescription(res.data.description);

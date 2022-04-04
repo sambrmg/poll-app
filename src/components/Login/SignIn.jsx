@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { baseURL, cookieConfig } from '../../config';
 import Cookies from 'js-cookie';
-import './SignIn.css';
 
 function SignIn(props) {
     const clientApi = axios.create({ baseURL });

@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../config';
-import './SignUp.css';
 
 function SignUp(props) {
   const clientApi = axios.create({ baseURL });
